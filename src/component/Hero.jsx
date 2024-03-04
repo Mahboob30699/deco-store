@@ -36,7 +36,7 @@ const Hero = () => {
                   src={image}
                   className='rounded-box h-full w-80  object-cover'
                 />
-              </div>
+              </div>    
             );
           })}
         </div>

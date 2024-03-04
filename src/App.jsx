@@ -13,6 +13,12 @@ import {
   Register,
   SingleProduct,
 } from "./pages";
+import { ErrorElement } from "./component";
+
+// Loaders
+import {loader as LandingLoader} from './pages/Landing';
+
+// Actions
 
 const router = createBrowserRouter([
   {
@@ -20,7 +26,7 @@ const router = createBrowserRouter([
     element: <HomeLayout />,
     errorElement: <Error />,
     children: [
-      { index: true, element: <Landing /> },
+      { index: true, element: <Landing />, errorElement: <ErrorElement /> , loader: LandingLoader},
       { path: "product", element: <Products /> },
       { path: "product/:id", element: <SingleProduct /> },
       { path: "cart", element: <Cart /> },
