@@ -7,3 +7,12 @@ const customFetch = axios.create({
 });
 
 export default customFetch;
+
+export const formatPrice = (price) => {
+    const RupeeAmount = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'PKR',
+    }).format((price));
+    return RupeeAmount;
+  };
+
