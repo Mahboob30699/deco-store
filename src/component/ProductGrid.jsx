@@ -25,11 +25,12 @@ const ProductGrid = () => {
               alt={title}
               className="rounded-xl h-64 md:h-48 w-full object-cover"
             />
-            <div className="card-body items-center text-center ">
+            
+          </figure>
+          <div className="card-body items-center text-center ">
               <h2 className="card-title capitalize tracking-wider">{title}</h2>
               <span className="text-secondary">{rupeeAmount}</span>
             </div>
-          </figure>
         </Link>
         )
       })}

@@ -4,29 +4,16 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
 
-const themes = {
-  winter: "winter",
-  dracula: "dracula",
-};
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTheme } from "../features/user/userSlice";
 
-const getThemeFromLocalStorage =()=>{
-  return localStorage.getItem('theme') || themes.winter;
-}
 const Navbar = () => {
-  const [theme, setTheme] = useState(getThemeFromLocalStorage);
-  const handleThem = () => {
-    const { winter, dracula } = themes;
-    const newTheme = theme === winter ? dracula : winter;
-    document.documentElement.setAttribute('data-theme', newTheme);
-  
-    setTheme(newTheme);
+  const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart);
+
+  const dispatch = useDispatch();
+  const handleTheme = () => {
+    dispatch(toggleTheme());
   };
-useEffect(()=>{
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
-
-},[theme]);
-
 
   return (
     <nav className="bg-base-200">
@@ -61,7 +48,7 @@ useEffect(()=>{
         <div className="navbar-end">
           {/* THEME ICONS */}
           <label className="swap swap-rotate">
-            <input type="checkbox" onChange={handleThem} />
+            <input type="checkbox" onChange={handleTheme} />
             {/* sun icon */}
             <BsSunFill className="swap-on h-4 w-4" />
             {/* Moon icon */}
@@ -72,7 +59,7 @@ useEffect(()=>{
             <div className="indicator">
               <BsCart3 className="h-6 w-6" />
               <span className="badge badge-sm badge-primary indicator-item">
-                8
+                {numItemsInCart}
               </span>
             </div>
           </NavLink>
