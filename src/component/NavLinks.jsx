@@ -13,7 +13,7 @@ const links = [
 
 const NavLinks = () => {
   const user = useSelector((state) => state.userState.user);
-  console.log("starting ", user);
+
   return (
     <>
       {links.map((link) => {

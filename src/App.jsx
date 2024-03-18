@@ -19,12 +19,15 @@ import { ErrorElement } from "./component";
 import { loader as LandingLoader } from "./pages/Landing";
 import { loader as singleProductLoader } from "./pages/SingleProduct";
 import { loader as productLoader } from "./pages/Products";
+import { loader as checkoutLoader } from "./pages/Checkout";
+import { loader as ordersLoader } from './pages/Orders';
 
 // Actions
-import {action as registerAction } from './pages/Register';
-import { action as loginAction } from './pages/Login';
+import { action as registerAction } from "./pages/Register";
+import { action as loginAction } from "./pages/Login";
+import { action as checkoutAction } from "./component/CheckoutForm";
 
-import { store } from './store';
+import { store } from "./store";
 
 const router = createBrowserRouter([
   {
@@ -51,15 +54,20 @@ const router = createBrowserRouter([
       },
       { path: "cart", element: <Cart /> },
       { path: "about", element: <About /> },
-      { path: "checkout", element: <Checkout /> },
-      { path: "orders", element: <Orders /> },
+      {
+        path: "checkout",
+        element: <Checkout />,
+        loader: checkoutLoader(store),
+        action:checkoutAction(store),
+      },
+      { path: "orders", element: <Orders />,loader: ordersLoader(store), },
     ],
   },
   {
     path: "/login",
     element: <Login />,
     errorElement: <Error />,
-    action:loginAction(store),
+    action: loginAction(store),
   },
   {
     path: "/Register",
